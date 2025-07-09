@@ -64,7 +64,7 @@ class BaseRequest extends NovaRequest
 
         // Flatten repeater fields before searching by attribute
         $fields = $fields->map(
-            fn($field) => $field instanceof \Laravel\Nova\Fields\Repeater
+            fn($field) => get_class($field) === 'Laravel\Nova\Fields\Repeater'
                 ? $field->repeatables->map->fields($this)->flatten(1)
                 : $field
         )->flatten(1);
