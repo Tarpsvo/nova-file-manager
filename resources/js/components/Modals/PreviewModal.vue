@@ -86,7 +86,7 @@ const copy = (file: Entity) => {
 <template>
   <BaseModal as="template" class="nova-file-manager" :name="PREVIEW_MODAL_NAME" :initial-focus-ref="buttonRef">
     <DialogPanel
-      class="relative bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-xl transform transition-all w-full max-w-7xl p-4 flex flex-col gap-4"
+      class="relative bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-xl transform transition-all w-full p-4 flex flex-col gap-4"
       :class="modalSize"
     >
       <div class="w-full flex flex-col flex-col-reverse gap-y-2 md:flex-row justify-between items-start">
