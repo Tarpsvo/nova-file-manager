@@ -908,12 +908,13 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       cropperOptions,
       perPage,
       paginationOptions,
+      isField = false,
     }: Config) {
       this.init()
       this.clearSelection()
 
       this.limit = undefined
-      this.isField = false
+      this.isField = isField
       this.multiple = true
       this.singleDisk = singleDisk
       this.permissions = permissions

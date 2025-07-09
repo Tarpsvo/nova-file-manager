@@ -13,7 +13,7 @@ interface Props {
   resourceId: string | number
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const selected = ref(undefined as Entity | undefined)
 const store = useBrowserStore()
@@ -33,6 +33,7 @@ const copy = (file: Entity) => {
 
 onMounted(() => {
   store.syncDarkMode()
+  store.prepareTool({ ...props.field, isField: true })
 })
 </script>
 
