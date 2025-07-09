@@ -126,7 +126,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     singleDisk: false,
     flexibleGroup: [],
     fieldInit: undefined,
-    modalSize: undefined,
+    modalSize: '7xl',
 
     // permissions
     permissions: {
@@ -914,6 +914,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       cropperOptions,
       perPage,
       paginationOptions,
+      modalSize,
     }: Config) {
       this.init()
       this.clearSelection()
@@ -930,6 +931,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.perPage = perPage ?? this.perPage
       this.perPageOptions = paginationOptions ?? this.perPageOptions
       this.error = undefined
+      this.modalSize = modalSize
     },
   },
   getters: {

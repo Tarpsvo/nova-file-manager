@@ -44,6 +44,7 @@ export type Config = {
   outdated?: boolean
   perPage?: number
   paginationOptions?: number[]
+  modalSize: 'full' | '7xl'
 }
 
 export type Entity = {
