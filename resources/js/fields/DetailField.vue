@@ -33,7 +33,6 @@ const copy = (file: Entity) => {
 
 onMounted(() => {
   store.syncDarkMode()
-  store.prepareTool({ ...props.field, isField: true })
 })
 </script>
 

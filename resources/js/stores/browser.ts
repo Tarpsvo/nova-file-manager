@@ -853,6 +853,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       perPage,
       paginationOptions,
       component,
+      isField = false,
       modalSize,
     }: BrowserConfig) {
       this.multiple = multiple
@@ -873,6 +874,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.permissions = permissions
       this.disk = undefined
       this.component = component
+      this.isField = isField
       this.modalSize = modalSize
     },
 
@@ -920,7 +922,6 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.clearSelection()
 
       this.limit = undefined
-      this.isField = isField
       this.multiple = true
       this.singleDisk = singleDisk
       this.permissions = permissions
