@@ -31,6 +31,7 @@ export type BrowserConfig = {
   perPage?: number
   paginationOptions?: number[]
   component?: string
+  modalSize: 'full' | '7xl'
 }
 
 export type Config = {
