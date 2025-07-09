@@ -43,6 +43,7 @@ export type Config = {
   outdated?: boolean
   perPage?: number
   paginationOptions?: number[]
+  isField: boolean
 }
 
 export type Entity = {
