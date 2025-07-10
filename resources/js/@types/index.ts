@@ -31,6 +31,7 @@ export type BrowserConfig = {
   perPage?: number
   paginationOptions?: number[]
   component?: string
+  isField?: boolean
 }
 
 export type Config = {

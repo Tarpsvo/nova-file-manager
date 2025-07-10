@@ -13,7 +13,7 @@ interface Props {
   resourceId: string | number
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const selected = ref(undefined as Entity | undefined)
 const store = useBrowserStore()

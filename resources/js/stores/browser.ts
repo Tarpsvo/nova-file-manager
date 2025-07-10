@@ -805,9 +805,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       perPage,
       paginationOptions,
       component,
+      isField,
     }: BrowserConfig) {
-      this.isField = true
-
       this.configure({
         initialFiles,
         multiple,
@@ -826,6 +825,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         perPage,
         paginationOptions,
         component,
+        isField,
       })
 
       this.openModal({ name: BROWSER_MODAL_NAME })
