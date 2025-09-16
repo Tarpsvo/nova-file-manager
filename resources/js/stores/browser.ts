@@ -736,12 +736,12 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         let editMode
 
         switch (this.component) {
-          case 'Nova.Create':
-            editMode = 'create'
-            break
-          case 'Nova.Update':
-            editMode = 'update'
-            break
+        case 'Nova.Create':
+          editMode = 'create'
+          break
+        case 'Nova.Update':
+          editMode = 'update'
+          break
         }
 
         data = {
