@@ -34,6 +34,7 @@ const perPageOptions = computed(() => store.perPageOptions)
 const selection = computed(() => store.selection)
 const limit = computed(() => store.limit)
 const loadingOperation = computed(() => store.loadingOperation)
+const acceptTypes = computed(() => store.acceptTypes)
 
 // ACTIONS
 const setDisk = (disk: string) => store.setDisk({ disk })
@@ -124,7 +125,7 @@ const openUploadModal = () => {
     <Breadcrumbs :items="breadcrumbs" :set-path="setPath" />
   </div>
 
-  <UploadModal v-if="showUploadFile" name="upload" :queue="queue" :upload="upload" />
+  <UploadModal v-if="showUploadFile" name="upload" :queue="queue" :upload="upload" :accept-types="acceptTypes" />
 
   <CreateFolderModal
     v-if="showCreateFolder"

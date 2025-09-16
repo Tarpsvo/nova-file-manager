@@ -118,9 +118,13 @@ const openModal = (name: string) => store.openModal({ name })
               class="flex items-center"
             >
               <DocumentIcon class="w-5 h-5" />
-              <div class="ml-4">
-                <div :class="[isSelected(file) ? 'font-bold' : 'font-medium']">
-                  {{ file.name }}
+              <div class="ml-4 w-full">
+                <div class="flex justify-between">
+                  <span :class="[isSelected(file) ? 'font-bold' : 'font-medium']">{{ file.name }}</span>
+                  <div class="text-gray-500 dark:text-gray-300">
+                    <span v-if="file.size">{{ file.size }}</span>
+                    <span v-if="file.lastModifiedAt" class="ml-1">&centerdot; {{ file.lastModifiedAt }}</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -31,6 +31,12 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
 
     public ?int $limit = null;
 
+    public ?string $acceptTypes = null;
+
+    public ?string $initialPath = null;
+
+    public ?string $initialView = null;
+
     public bool $asHtml = false;
 
     public Closure $storageCallback;
@@ -68,6 +74,29 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
     public function limit(?int $limit = null): static
     {
         $this->limit = $limit;
+
+        return $this;
+    }
+
+    public function acceptTypes(?string $acceptTypes = null): static
+    {
+        $this->acceptTypes = $acceptTypes;
+
+        return $this;
+    }
+
+    public function initialPath(?string $initialPath = null): static
+    {
+        $this->initialPath = $initialPath;
+
+        return $this;
+    }
+
+    public function initialView(?string $initialView = null): static
+    {
+        if (!in_array($initialView, ['grid', 'list'])) $initialView = null;
+
+        $this->initialView = $initialView;
 
         return $this;
     }
@@ -152,7 +181,7 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
             $files = collect($payload);
 
             if ($this->multiple) {
-                $value = collect($files)->map(fn (array $file) => new Asset(...$file));
+                $value = collect($files)->map(fn(array $file) => new Asset(...$file));
             } else {
                 $value = $files->isNotEmpty() ? new Asset(...$files->first()) : null;
             }
@@ -186,7 +215,7 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
 
         if (is_array($value)) {
             if ($this->multiple) {
-                $value = collect($value)->map(fn (array|object $asset) => new Asset(...(array) $asset));
+                $value = collect($value)->map(fn(array|object $asset) => new Asset(...(array) $asset));
             } else {
                 $value = collect([new Asset(...$value)]);
             }
@@ -235,6 +264,9 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
 
         $this->multiple = $wrapper->multiple;
         $this->limit = $wrapper->limit;
+        $this->acceptTypes = $wrapper->acceptTypes;
+        $this->initialPath = $wrapper->initialPath;
+        $this->initialView = $wrapper->initialView;
         $this->asHtml = $wrapper->asHtml;
         $this->simple = $wrapper->simple;
 
@@ -292,8 +324,11 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
             [
                 'multiple' => $this->multiple,
                 'limit' => $this->multiple ? $this->limit : 1,
+                'acceptTypes' => $this->acceptTypes ?: null,
                 'asHtml' => $this->asHtml,
                 'wrapper' => $this->wrapper,
+                'initialPath' => $this->initialPath,
+                'initialView' => $this->initialView,
             ],
             $this->options(),
         );

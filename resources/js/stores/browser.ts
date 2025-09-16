@@ -54,6 +54,9 @@ interface State {
   wrapper?: string
   queue: QueueEntry[]
   multiple?: boolean
+  acceptTypes?: string
+  initialPath?: string
+  initialView?: View
 
   ready: boolean
   isField: boolean
@@ -106,6 +109,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     wrapper: undefined,
     queue: [],
     multiple: undefined,
+    acceptTypes: undefined,
+    initialPath: undefined,
+    initialView: undefined,
 
     // status
     ready: false,
@@ -737,12 +743,12 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
         let editMode
 
         switch (this.component) {
-        case 'Nova.Create':
-          editMode = 'create'
-          break
-        case 'Nova.Update':
-          editMode = 'update'
-          break
+          case 'Nova.Create':
+            editMode = 'create'
+            break
+          case 'Nova.Update':
+            editMode = 'update'
+            break
         }
 
         data = {
@@ -792,6 +798,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     openBrowser({
       initialFiles,
       multiple,
+      acceptTypes,
+      initialPath,
+      initialView,
       limit,
       wrapper,
       resource,
@@ -813,6 +822,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.configure({
         initialFiles,
         multiple,
+        acceptTypes,
+        initialPath,
+        initialView,
         limit,
         wrapper,
         resource,
@@ -855,8 +867,16 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       component,
       isField = false,
       modalSize,
+      acceptTypes,
+      initialPath,
+      initialView,
     }: BrowserConfig) {
       this.multiple = multiple
+      this.acceptTypes = acceptTypes
+      this.path = initialPath // always open from requested path
+      this.initialPath = initialPath
+      this.view = initialView ?? this.view
+      this.initialView = initialView
       this.limit = limit
       this.wrapper = wrapper
       this.resource = resource
@@ -881,6 +901,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     closeBrowser() {
       this.isField = false
       this.multiple = undefined
+      this.acceptTypes = undefined
+      this.initialPath = undefined
+      this.initialView = undefined
       this.limit = undefined
       this.wrapper = undefined
       this.resource = undefined

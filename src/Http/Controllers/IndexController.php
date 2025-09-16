@@ -18,16 +18,21 @@ class IndexController extends Controller
     {
         $manager = $request->manager();
 
+        $allItems = collect([...$manager->directories(), ...$manager->files()]);
+
         /** @var \Illuminate\Pagination\LengthAwarePaginator $paginator */
         $paginator = $manager
-            ->paginate($manager->files())
+            ->paginate($allItems)
             ->onEachSide(1);
+
+        $folders = collect($paginator->items())->where('type', 'folder')->values();
+        $files = collect($paginator->items())->where('type', '!=', 'folder')->values();
 
         return response()->json([
             'disk' => $manager->getDisk(),
             'breadcrumbs' => $manager->breadcrumbs(),
-            'folders' => $manager->directories(),
-            'files' => $paginator->items(),
+            'folders' => $folders,
+            'files' => $files,
             'pagination' => [
                 'current_page' => $paginator->currentPage(),
                 'last_page' => $paginator->lastPage(),

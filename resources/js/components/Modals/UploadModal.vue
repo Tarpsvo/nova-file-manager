@@ -11,6 +11,7 @@ interface Props {
   name: string
   queue: QueueEntry[]
   upload: (files: File[]) => void
+  acceptTypes?: string
 }
 
 const props = defineProps<Props>()
@@ -107,6 +108,7 @@ watch(files, () => submit())
                         name="file-upload"
                         type="file"
                         multiple
+                        :accept="acceptTypes"
                         @change="onChange"
                       />
                     </label>

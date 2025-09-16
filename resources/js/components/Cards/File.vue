@@ -113,7 +113,8 @@ const name = computed(() => (missing.value ? props.file.path : props.file.name))
       class="gap-x-0.5 inline-flex flex-wrap items-center text-xs pointer-events-none block font-medium text-gray-500 text-left break-all"
     >
       <span v-if="file.size">{{ file.size }}</span>
-      <span v-if="fieldMode && !singleDisk && file.disk?.length > 0" class="ml-0.5">&centerdot; {{ file.disk }}</span>
+      <span v-if="file.lastModifiedAt" class="ml-0.5">&centerdot; {{ file.lastModifiedAt }}</span>
+      <span v-if="!fieldMode && !singleDisk && file.disk?.length > 0" class="ml-0.5">&centerdot; {{ file.disk }}</span>
     </div>
 
     <span class="absolute top-1 right-1" v-if="selected">
