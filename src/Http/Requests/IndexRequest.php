@@ -13,7 +13,7 @@ class IndexRequest extends BaseRequest
     {
         return [
             'disk' => ['sometimes', 'string', new DiskExistsRule()],
-            'path' => ['sometimes', 'string', new ExistsInFilesystem($this)],
+            'path' => ['sometimes', 'string'],
             'page' => ['sometimes', 'numeric', 'min:1'],
             'perPage' => ['sometimes', 'numeric', 'min:1'],
             'search' => ['nullable', 'string'],

@@ -103,6 +103,9 @@ export default defineComponent({
       this.openBrowser({
         initialFiles: this.value,
         multiple: this.currentField.multiple ?? false,
+        acceptTypes: this.currentField.acceptTypes ?? null,
+        initialPath: this.currentField.initialPath ?? null,
+        initialView: this.currentField.initialView ?? null,
         limit: this.currentField.limit ?? null,
         wrapper: this.currentField.wrapper ?? null,
         resource: this.resourceName ?? null,

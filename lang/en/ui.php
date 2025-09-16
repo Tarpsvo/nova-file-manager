@@ -40,7 +40,7 @@ return [
     'NovaFileManager.spotlight.helpText' => 'Use this tool to quickly search for folders and files across your storage. You can also use the search modifiers found in the footer below to limit the results to just files or folders.',
     'NovaFileManager.spotlight.helpTitle' => 'Help with searching',
     'NovaFileManager.spotlight.noResults' => 'No results found',
-    'NovaFileManager.spotlight.noResultsTryAgain' => 'We couldn’t find anything with that term. Please try again.\n\n',
+    'NovaFileManager.spotlight.noResultsTryAgain' => 'We couldn’t find anything with that term. Please try again.',
     'NovaFileManager.spotlight.placeholder' => 'Start typing to search...',
     'NovaFileManager.title' => 'File Manager',
     'NovaFileManager.toolbar.clear' => 'clear',

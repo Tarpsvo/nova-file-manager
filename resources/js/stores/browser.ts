@@ -54,6 +54,9 @@ interface State {
   wrapper?: string
   queue: QueueEntry[]
   multiple?: boolean
+  acceptTypes?: string
+  initialPath?: string
+  initialView?: View
 
   ready: boolean
   isField: boolean
@@ -71,7 +74,7 @@ interface State {
   singleDisk: boolean
   flexibleGroup: string[]
   fieldInit?: () => void
-  modalSize: '7xl'
+  modalSize?: '7xl' | string
   permissions?: PermissionsCollection
   chunkSize: number
   usePintura: boolean
@@ -106,6 +109,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     wrapper: undefined,
     queue: [],
     multiple: undefined,
+    acceptTypes: undefined,
+    initialPath: undefined,
+    initialView: undefined,
 
     // status
     ready: false,
@@ -785,6 +791,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     openBrowser({
       initialFiles,
       multiple,
+      acceptTypes,
+      initialPath,
+      initialView,
       limit,
       wrapper,
       resource,
@@ -804,6 +813,11 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.modalSize = modalSize
       this.isField = true
       this.multiple = multiple
+      this.acceptTypes = acceptTypes
+      this.path = initialPath // always open from requested path
+      this.initialPath = initialPath
+      this.view = initialView ?? this.view
+      this.initialView = initialView
       this.limit = limit
       this.wrapper = wrapper
       this.resource = resource
@@ -828,6 +842,9 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     closeBrowser() {
       this.isField = false
       this.multiple = undefined
+      this.acceptTypes = undefined
+      this.initialPath = undefined
+      this.initialView = undefined
       this.limit = undefined
       this.wrapper = undefined
       this.resource = undefined

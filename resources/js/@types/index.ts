@@ -16,6 +16,9 @@ export type Breadcrumb = {
 export type BrowserConfig = {
   initialFiles: Entity[]
   multiple?: boolean
+  acceptTypes?: string
+  initialPath?: string
+  initialView?: View
   limit?: number
   wrapper?: string
   resource?: string
@@ -30,6 +33,7 @@ export type BrowserConfig = {
   cropperOptions?: CropperOptions
   paginationOptions?: number[]
   component?: string
+  modalSize?: string
 }
 
 export type Config = {
@@ -89,6 +93,9 @@ export type NovaField = {
   indexName: string
   limit: number
   multiple: boolean
+  acceptTypes?: string
+  initialPath?: string
+  initialView?: View
   name: string
   nullable: boolean
   panel: string
