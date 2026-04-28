@@ -76,6 +76,8 @@ interface State {
   fieldInit?: () => void
   modalSize?: '7xl' | string
   permissions?: PermissionsCollection
+  autoSelect?: boolean
+  pendingAutoSelectNames?: string[]
   chunkSize: number
   usePintura: boolean
   pinturaOptions?: PinturaOptions
@@ -152,6 +154,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     },
 
     // config
+    autoSelect: undefined,
+    pendingAutoSelectNames: undefined,
     chunkSize: 50 * 1024 * 1024,
 
     // pintura
@@ -377,6 +381,27 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
           this.isUploading = false
 
           await this.data()
+
+          if (this.autoSelect && this.pendingAutoSelectNames?.length && this.files?.length) {
+            const names = new Set(this.pendingAutoSelectNames)
+            const matched = this.files.filter(f => names.has(f.name))
+            const existingIds = new Set(this.selection?.map(s => s.id) ?? [])
+            let toAdd = matched.filter(f => !existingIds.has(f.id))
+
+            if (!this.multiple) {
+              if (toAdd.length) {
+                this.setSelection({ files: [toAdd[toAdd.length - 1]] })
+              }
+            } else {
+              if (this.limit) {
+                const room = Math.max(0, this.limit - (this.selection?.length ?? 0))
+                toAdd = toAdd.slice(0, room)
+              }
+              toAdd.forEach(file => this.selectFile({ file }))
+            }
+          }
+
+          this.pendingAutoSelectNames = undefined
         }, 1000)
       }
     },
@@ -596,6 +621,10 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
     upload({ files }: { files: File[] }) {
       this.isUploading = true
 
+      if (this.autoSelect) {
+        this.pendingAutoSelectNames = files.map(f => f.name)
+      }
+
       const uploader = new Resumable({
         permanentErrors: [400, 404, 409, 415, 419, 422, 500, 501],
         chunkSize: this.chunkSize,
@@ -809,6 +838,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       paginationOptions,
       component,
       modalSize,
+      autoSelect,
     }: BrowserConfig) {
       this.modalSize = modalSize
       this.isField = true
@@ -834,6 +864,7 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       this.permissions = permissions
       this.disk = undefined
       this.component = component
+      this.autoSelect = autoSelect ?? true
 
       this.openModal({ name: BROWSER_MODAL_NAME })
       this.setSelection({ files: [...initialFiles] })
@@ -859,6 +890,8 @@ const useBrowserStore = defineStore('nova-file-manager/browser', {
       ;(this.perPage = 10), (this.perPageOptions = range(10, 60, 10)), (this.error = undefined)
       this.permissions = undefined
       this.disk = undefined
+      this.autoSelect = undefined
+      this.pendingAutoSelectNames = undefined
 
       this.setSelection({ files: [] })
       this.closeModal({ name: BROWSER_MODAL_NAME })

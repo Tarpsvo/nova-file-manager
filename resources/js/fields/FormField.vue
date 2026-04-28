@@ -122,6 +122,7 @@ export default defineComponent({
         cropperOptions: this.currentField.cropperOptions ?? {},
         paginationOptions: this.currentField.paginationOptions ?? undefined,
         component: this.$inertia?.page?.component,
+        autoSelect: this.currentField.autoSelect ?? true,
       })
     },
 

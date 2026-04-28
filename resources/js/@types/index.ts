@@ -34,6 +34,7 @@ export type BrowserConfig = {
   paginationOptions?: number[]
   component?: string
   modalSize?: string
+  autoSelect?: boolean
 }
 
 export type Config = {

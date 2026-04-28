@@ -39,6 +39,8 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
 
     public bool $asHtml = false;
 
+    public bool $autoSelect = true;
+
     public Closure $storageCallback;
 
     public static array $wrappers = [];
@@ -102,6 +104,13 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
     public function asHtml(): static
     {
         $this->asHtml = true;
+
+        return $this;
+    }
+
+    public function autoSelect(bool $autoSelect = true): static
+    {
+        $this->autoSelect = $autoSelect;
 
         return $this;
     }
@@ -258,6 +267,7 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
         $this->initialPath = $wrapper->initialPath;
         $this->initialView = $wrapper->initialView;
         $this->asHtml = $wrapper->asHtml;
+        $this->autoSelect = $wrapper->autoSelect;
 
         $this->merge($wrapper);
 
@@ -275,6 +285,7 @@ class FileManager extends Field implements Cover, InteractsWithFilesystemContrac
                 'limit' => $this->multiple ? $this->limit : 1,
                 'acceptTypes' => $this->acceptTypes ?: null,
                 'asHtml' => $this->asHtml,
+                'autoSelect' => $this->autoSelect,
                 'wrapper' => $this->wrapper,
                 'initialPath' => $this->initialPath,
                 'initialView' => $this->initialView,
