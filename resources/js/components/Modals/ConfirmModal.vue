@@ -9,6 +9,10 @@ const variants = {
     iconBackground: 'bg-red-100 dark:bg-red-800/30',
     iconColor: 'text-red-600 dark:text-red-500',
   },
+  primary: {
+    iconBackground: 'bg-blue-100 dark:bg-blue-800/30',
+    iconColor: 'text-blue-600 dark:text-blue-500',
+  },
 }
 
 interface Props {

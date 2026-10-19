@@ -58,6 +58,40 @@ class Project extends Resource
 }
 ```
 
+## Editing on the detail view
+
+By default, the field is read-only on the resource detail view. Use the `allowEditOnDetail` method to display an
+"Open File Manager" button there as well.
+
+When the file manager is closed with a changed selection, the user is asked whether the changes should be saved. Saving
+updates the resource right away, using the field's validation rules. The user must be authorized to update the resource,
+and readonly fields cannot be edited.
+
+```php
+// app/Nova/Project.php
+
+use Oneduo\NovaFileManager\FileManager;
+
+class Project extends Resource
+{
+    // ...
+
+    public function fields(NovaRequest $request): array
+    {
+        return [
+            // ... any other fields
+            FileManager::make(__('Attachments'), 'attachments')
+                ->multiple()
+                ->allowEditOnDetail(),
+        ];
+    }
+}
+```
+
+::: tip NOTE
+Editing on the detail view is not available for fields used inside Flexible Content or registered through a wrapper.
+:::
+
 
 ## Validation
 

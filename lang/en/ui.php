@@ -36,6 +36,8 @@ return [
     'NovaFileManager.preview.information' => 'Information',
     'NovaFileManager.renameFileTitle' => 'Rename file',
     'NovaFileManager.renameFolderTitle' => 'Rename folder',
+    'NovaFileManager.saveChangesContent' => 'Your file selection has changed. Saving will update this resource.',
+    'NovaFileManager.saveChangesTitle' => 'Do you want to save your changes?',
     'NovaFileManager.selectionCount' => ':count selected',
     'NovaFileManager.spotlight.helpText' => 'Use this tool to quickly search for folders and files across your storage. You can also use the search modifiers found in the footer below to limit the results to just files or folders.',
     'NovaFileManager.spotlight.helpTitle' => 'Help with searching',

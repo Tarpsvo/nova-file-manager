@@ -1,12 +1,11 @@
 <script lang="ts">
-import { Dialog as DialogModal, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { CloudIcon } from '@heroicons/vue/24/outline'
 import { Entity, NovaField } from '__types__'
 import { mapActions, mapState } from 'pinia'
 import { defineComponent, PropType } from 'vue'
 import draggable from 'vuedraggable'
-import Browser from '@/components/Browser.vue'
 import FieldCard from '@/components/Cards/FieldCard.vue'
+import BrowserModal from '@/components/Modals/BrowserModal.vue'
 import useBrowserStore from '@/stores/browser'
 import omit from 'lodash/omit'
 
@@ -19,12 +18,8 @@ export default defineComponent({
 
   components: {
     FieldCard,
-    Browser,
+    BrowserModal,
     CloudIcon,
-    DialogModal,
-    DialogPanel,
-    TransitionChild,
-    TransitionRoot,
     draggable,
   },
 
@@ -195,42 +190,7 @@ export default defineComponent({
           </div>
         </div>
       </div>
-      <TransitionRoot v-if="displayModal" :show="isBrowserOpen" as="template" class="nova-file-manager w-full">
-        <DialogModal as="div" class="relative" @close="closeBrowserModal">
-          <TransitionChild
-            as="template"
-            class="z-[60]"
-            enter="ease-out duration-300"
-            enter-from="opacity-0"
-            enter-to="opacity-100"
-            leave="ease-in duration-200"
-            leave-from="opacity-100"
-            leave-to="opacity-0"
-          >
-            <div class="fixed inset-0 bg-gray-800/20 backdrop-blur-sm transition-opacity" />
-          </TransitionChild>
-
-          <div :class="['fixed z-[60] inset-0 overflow-y-auto w-full', { dark }]">
-            <div class="flex items-start justify-center min-h-full">
-              <TransitionChild
-                as="template"
-                enter="ease-out duration-300"
-                enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enter-to="opacity-100 translate-y-0 sm:scale-100"
-                leave="ease-in duration-200"
-                leave-from="opacity-100 translate-y-0 sm:scale-100"
-                leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              >
-                <DialogPanel
-                  class="relative bg-transparent md:rounded-lg overflow-hidden shadow-xl transition-all w-full border border-gray-300 dark:border-gray-800 md:m-8 m-0"
-                >
-                  <Browser />
-                </DialogPanel>
-              </TransitionChild>
-            </div>
-          </div>
-        </DialogModal>
-      </TransitionRoot>
+      <BrowserModal v-if="displayModal" @close="closeBrowserModal" />
     </template>
   </DefaultField>
 </template>

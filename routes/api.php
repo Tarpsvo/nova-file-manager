@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Oneduo\NovaFileManager\Http\Controllers\DiskController;
+use Oneduo\NovaFileManager\Http\Controllers\FieldController;
 use Oneduo\NovaFileManager\Http\Controllers\FileController;
 use Oneduo\NovaFileManager\Http\Controllers\FolderController;
 use Oneduo\NovaFileManager\Http\Controllers\IndexController;
@@ -40,4 +41,6 @@ Route::as('nova-file-manager.')->middleware('nova')->group(static function () {
         Route::post('rename/{resource?}', [FolderController::class, 'rename'])->name('rename');
         Route::post('delete/{resource?}', [FolderController::class, 'delete'])->name('delete');
     });
+
+    Route::post('field/update/{resource}', FieldController::class)->name('field.update');
 });

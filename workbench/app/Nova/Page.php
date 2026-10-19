@@ -59,6 +59,7 @@ class Page extends Resource
 
             FileManager::make('Image')
                 ->rules('required')
+                ->allowEditOnDetail()
                 ->pagination(function (NovaRequest $request) {
                     return [10, 42, 84];
                 }),

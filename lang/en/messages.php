@@ -16,4 +16,8 @@ return [
         'rename' => 'Folder renamed successfully!',
         'delete' => 'Folder deleted successfully!',
     ],
+
+    'field' => [
+        'update' => 'Changes saved successfully!',
+    ],
 ];
