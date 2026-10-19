@@ -1,0 +1,52 @@
+workbench/app/Nova/TestResourceEditableOnDetail.php
+  s_a8eaf1c042a683::t_7df4eb0373ee10 1-22
+workbench/app/Nova/Page.php
+  s_a8eaf1c042a683::t_a83c5042272b90 62
+resources/js/fields/FormField.vue
+  s_a8eaf1c042a683::t_0b20b38cd7baf5 21
+  s_a8eaf1c042a683::t_fcd4f0e846b826 8
+  s_a8eaf1c042a683::t_6c79b6a919f24c 193
+src/Http/Controllers/FieldController.php
+  s_a8eaf1c042a683::t_34f4d1329f2ab1 1-33
+src/FileManager.php
+  s_a8eaf1c042a683::t_7994c09253e312 44-45
+  s_a8eaf1c042a683::t_7ffa8a7797b20e 298
+  s_a8eaf1c042a683::t_f32a05e2ad8ae8 120-126
+resources/js/fields/DetailField.vue
+  s_a8eaf1c042a683::t_20e483d9f0ff2a 2-4,6-8,10,17-19,25-29,35-39,50,59-135,141,144-145,148-152,155-165,168-191
+lang/en.json
+  s_a8eaf1c042a683::t_cc8fe1affedfca 35-36
+docs/field.md
+  s_a8eaf1c042a683::t_10e1e63169c222 61-94
+tests/Feature/FieldUpdateTest.php
+  s_a8eaf1c042a683::t_e03006c134e0ea 1-79
+resources/js/components/Modals/ConfirmModal.vue
+  s_a8eaf1c042a683::t_4c51b04bf3cd6e 12-15
+lang/en/messages.php
+  s_a8eaf1c042a683::t_4747a1cc998713 19-22
+src/Http/Requests/UpdateFieldRequest.php
+  s_a8eaf1c042a683::t_d9413618ad745f 1-41
+lang/en/ui.php
+  s_a8eaf1c042a683::t_cc8fe1affedfca 39-40
+resources/js/components/Modals/BrowserModal.vue
+  s_a8eaf1c042a683::t_28fd582acfe759 1-52
+routes/api.php
+  s_a8eaf1c042a683::t_0b1182ab6ee85b 7
+  s_a8eaf1c042a683::t_1d2870d5a46b4a 44-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b9ab3cecb3a7c3e99718cb8cff2d98ca4450d31d",
+  "prompts": {},
+  "sessions": {
+    "s_a8eaf1c042a683": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c87ec6be-cc58-49be-8b41-ac0dacf584fd",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Tarvo Reinpalu <tarvo@versioon.ee>"
+    }
+  }
+}
